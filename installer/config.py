@@ -4,7 +4,7 @@ Configuration classes and enums for the installer.
 
 from dataclasses import dataclass
 from enum import Enum, auto
-
+from pathlib import Path
 
 class Bootloader(Enum):
     """Supported bootloaders."""
@@ -51,7 +51,7 @@ class Config:
 
     ram_gib: int = 0
 
-    disk: str = ""
+    disk: Path | None = None
 
     # Memory
     swap_gib: int = 0
