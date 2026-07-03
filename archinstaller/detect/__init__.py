@@ -1,0 +1,13 @@
+"""
+    detect package
+"""
+
+from .cpu import detect_cpu
+from .disks import detect_disks
+from .memory import detect_memory
+
+__all__ = [
+    "detect_cpu",
+    "detect_disks",
+    "detect_memory",
+]

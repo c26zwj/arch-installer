@@ -2,7 +2,8 @@
 Configuration classes and enums for the installer.
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from .models import CPU, Disk, GPU
 from enum import Enum, auto
 from pathlib import Path
 
@@ -46,8 +47,9 @@ class Config:
     desktop: Desktop = Desktop.KDE
 
     # Hardware (detected later)
-    cpu_vendor: str = ""
-    gpu_vendor: str = ""
+    cpu: CPU | None = None
+    gpu: GPU | None = None
+    disks: list[Disk] = field(default_factory=list)
 
     ram_gib: int = 0
 

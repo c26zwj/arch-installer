@@ -25,3 +25,4 @@ def detect_memory() -> int:
             return round(gib)
 
     raise RuntimeError("Unable to detect system memory.")
+
