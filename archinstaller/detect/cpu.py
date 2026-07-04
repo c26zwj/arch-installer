@@ -16,7 +16,6 @@ def detect_cpu() -> CPU:
     model = ""
 
     for line in Path("/proc/cpuinfo").read_text().splitlines():
-
         if line.startswith("vendor_id"):
             vendor = line.split(":", 1)[1].strip()
 

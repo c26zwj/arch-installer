@@ -3,9 +3,11 @@ Configuration classes and enums for the installer.
 """
 
 from dataclasses import dataclass, field
-from .models import CPU, Disk, GPU
 from enum import Enum, auto
 from pathlib import Path
+
+from .models import CPU, GPU, Disk
+
 
 class Bootloader(Enum):
     """Supported bootloaders."""
@@ -30,7 +32,7 @@ class Desktop(Enum):
     NONE = auto()
 
 
-@dataclass
+@dataclass(slots=True)
 class Config:
     """Installer configuration."""
 
@@ -54,6 +56,7 @@ class Config:
     ram_gib: int = 0
 
     disk: Path | None = None
+    selected_disk: Disk | None = None
 
     # Memory
     swap_gib: int = 0

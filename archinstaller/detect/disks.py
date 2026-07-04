@@ -3,10 +3,10 @@ Disk detection.
 """
 
 import json
-import subprocess
 from pathlib import Path
 
 from ..models import Disk
+from ..shell import capture
 
 
 def detect_disks() -> list[Disk]:
@@ -14,23 +14,17 @@ def detect_disks() -> list[Disk]:
     Return all physical disks.
     """
 
-    result = subprocess.run(
-        [
-            "lsblk",
-            "--json",
-            "--output",
-            "NAME,PATH,SIZE,TYPE,TRAN,MODEL,VENDOR,SERIAL,RM,HOTPLUG",
-        ],
-        check=True,
-        capture_output=True,
-        text=True,
+    text = capture(
+        "lsblk",
+        "--json",
+        "--output",
+        "NAME,PATH,SIZE,TYPE,TRAN,MODEL,VENDOR,SERIAL,RM,HOTPLUG",
     )
 
-    data = json.loads(result.stdout)
+    data = json.loads(text)
 
     disks: list[Disk] = []
     for device in data["blockdevices"]:
-
         if device["type"] != "disk":
             continue
 

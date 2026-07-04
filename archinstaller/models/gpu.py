@@ -8,3 +8,4 @@ class GPU:
     vendor: str
     model: str
     driver: str
+    open_source: bool

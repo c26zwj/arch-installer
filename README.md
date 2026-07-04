@@ -23,3 +23,4 @@ A Python-based Arch Linux installer with first-class support for:
 
 ```bash
 python install.py
+```
