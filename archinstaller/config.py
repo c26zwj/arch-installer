@@ -3,33 +3,9 @@ Configuration classes and enums for the installer.
 """
 
 from dataclasses import dataclass, field
-from enum import Enum, auto
-from pathlib import Path
 
 from .models import CPU, GPU, Disk
-
-
-class Bootloader(Enum):
-    """Supported bootloaders."""
-
-    GRUB = auto()
-    SYSTEMD_BOOT = auto()
-
-
-class Filesystem(Enum):
-    """Supported filesystems."""
-
-    BTRFS = auto()
-    EXT4 = auto()
-
-
-class Desktop(Enum):
-    """Supported desktop environments."""
-
-    KDE = auto()
-    GNOME = auto()
-    XFCE = auto()
-    NONE = auto()
+from .models.enums import Bootloader, Desktop, Filesystem
 
 
 @dataclass(slots=True)
@@ -50,7 +26,7 @@ class Config:
 
     # Hardware (detected later)
     cpu: CPU | None = None
-    gpu: GPU | None = None
+    gpus: list[GPU] = field(default_factory=list)
     disks: list[Disk] = field(default_factory=list)
 
     ram_gib: int = 0

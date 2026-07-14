@@ -1,11 +1,9 @@
 from dataclasses import dataclass
 
+from .enums import Vendor
+
 
 @dataclass(slots=True)
 class GPU:
-    """Information about the installed GPU."""
-
-    vendor: str
+    vendor: Vendor
     model: str
-    driver: str
-    open_source: bool

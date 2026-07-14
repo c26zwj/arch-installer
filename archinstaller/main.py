@@ -2,7 +2,7 @@
 
 from . import PROJECT_NAME, VERSION
 from .config import Config
-from .detect import detect_cpu, detect_memory, detect_disks
+from .detect import detect_cpu, detect_disks, detect_gpus, detect_memory
 
 
 def main() -> None:
@@ -11,6 +11,7 @@ def main() -> None:
     cfg = Config()
     cfg.ram_gib = detect_memory()
     cfg.cpu = detect_cpu()
+    cfg.gpus = detect_gpus()
     cfg.disks = detect_disks()
 
     print(f"{PROJECT_NAME} v{VERSION}")
@@ -27,7 +28,7 @@ def main() -> None:
     print()
 
     print(f"{'CPU':<12}: {cfg.cpu.model}")
-    print(f"{'Vendor':<12}: {cfg.cpu.vendor}")
+    print(f"{'Vendor':<12}: {cfg.cpu.vendor.name}")
     print(f"{'Microcode':<12}: {cfg.cpu.microcode}")
     print()
 
@@ -41,3 +42,10 @@ def main() -> None:
             f"{disk.transport:<5} "
             f"{disk.model}"
         )
+
+    print()
+    print("GPUs")
+    print("-" * 60)
+
+    for gpu in cfg.gpus:
+        print(f"{gpu.vendor.name:<8} {gpu.model}")
