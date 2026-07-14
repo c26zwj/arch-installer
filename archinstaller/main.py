@@ -8,6 +8,7 @@ from .detect import (
     detect_firmware,
     detect_gpus,
     detect_memory,
+    detect_network,
 )
 
 def main() -> None:
@@ -39,6 +40,7 @@ def main() -> None:
     print(f"{'CPU':<12}: {cfg.cpu.model}")
     print(f"{'Vendor':<12}: {cfg.cpu.vendor.name}")
     print(f"{'Microcode':<12}: {cfg.cpu.microcode}")
+
     print()
 
     print("Disks")
@@ -58,3 +60,10 @@ def main() -> None:
 
     for gpu in cfg.gpus:
         print(f"{gpu.vendor.name:<8} {gpu.model}")
+    print()
+
+    cfg.online = detect_network()
+    print(
+        f"{'Internet':<12}: "
+        f"{'Connected' if cfg.online else 'Offline'}"
+    )

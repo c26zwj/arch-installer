@@ -29,14 +29,15 @@ class Config:
     cpu: CPU | None = None
     gpus: list[GPU] = field(default_factory=list)
     disks: list[Disk] = field(default_factory=list)
-
     ram_gib: int = 0
+    online: bool = False
 
     selected_disk: Disk | None = None
 
     # Memory
     swap_gib: int = 0
     zram_gib: int = 0
+
 
     # Applications
     install_steam: bool = True

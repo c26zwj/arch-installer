@@ -7,6 +7,7 @@ from .disks import detect_disks
 from .memory import detect_memory
 from .gpu import detect_gpus
 from .firmware import detect_firmware
+from .network import detect_network
 
 __all__ = [
     "detect_cpu",
@@ -14,4 +15,5 @@ __all__ = [
     "detect_firmware",
     "detect_gpus",
     "detect_memory",
+    "detect_network",
 ]
