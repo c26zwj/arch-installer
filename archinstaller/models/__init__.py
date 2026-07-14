@@ -5,9 +5,12 @@
 from .cpu import CPU
 from .disk import Disk
 from .gpu import GPU
+from .firmware import Firmware
+
 
 __all__ = [
     "CPU",
-    "GPU",
     "Disk",
+    "Firmware",
+    "GPU",
 ]

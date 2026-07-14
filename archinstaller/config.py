@@ -4,7 +4,7 @@ Configuration classes and enums for the installer.
 
 from dataclasses import dataclass, field
 
-from .models import CPU, GPU, Disk
+from .models import CPU, Disk, Firmware, GPU
 from .models.enums import Bootloader, Desktop, Filesystem
 
 
@@ -25,13 +25,13 @@ class Config:
     desktop: Desktop = Desktop.KDE
 
     # Hardware (detected later)
+    firmware: Firmware | None = None
     cpu: CPU | None = None
     gpus: list[GPU] = field(default_factory=list)
     disks: list[Disk] = field(default_factory=list)
 
     ram_gib: int = 0
 
-    disk: Path | None = None
     selected_disk: Disk | None = None
 
     # Memory
